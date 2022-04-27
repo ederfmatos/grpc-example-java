@@ -1,0 +1,43 @@
+syntax = "proto3";
+package proto;
+
+option java_multiple_files = true;
+option java_package = "generated";
+
+service ProductService {
+  rpc listAllProducts(Empty) returns (ProductListResponse) {}
+  rpc createProduct(CreateProductRequest) returns (CreateProductResponse) {}
+  rpc inactiveProduct(InactiveProductRequest) returns (Empty) {}
+}
+
+message Empty {
+}
+
+message ProductListResponse {
+  repeated ProductListItem products = 1;
+}
+
+message ProductListItem {
+  string id = 1;
+  string name = 2;
+  int32 amount = 3;
+  string category = 4;
+}
+
+message CreateProductRequest {
+  string name = 2;
+  int32 amount = 3;
+  string category = 4;
+}
+
+message CreateProductResponse {
+  string id = 1;
+  string name = 2;
+  int32 amount = 3;
+  string category = 4;
+}
+
+message InactiveProductRequest {
+  string productId = 1;
+}
+
